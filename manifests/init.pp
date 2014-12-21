@@ -2,7 +2,7 @@
 #
 #
 class nexus(
-  $base_dir     = '/usr/local',
+  $base_dir     = '/opt',
   $run_as_user  = 'nexus',
   $remote_url   = 'http://www.sonatype.org/downloads/nexus-latest-bundle.tar.gz',
   $tar_name     = 'nexus-latest.tar.gz',
