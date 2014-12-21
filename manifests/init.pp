@@ -6,7 +6,7 @@ class nexus(
   $run_as_user  = 'nexus',
   $remote_url   = 'http://www.sonatype.org/downloads/nexus-latest-bundle.tar.gz',
   $tar_name     = 'nexus-latest.tar.gz',
-  $install_java = true
+  $install_java = false 
 ) {
 
   if $install_java == true {
