@@ -19,10 +19,6 @@ class nexus(
 
   $nexus_home = "${base_dir}/nexus"
 
-  if $::osfamily != 'RedHat' {
-    fail("unsupported osfamily \"${::osfamily}\"")
-  }
-
   class { 'staging':
     path => '/opt/staging',
   }
