@@ -8,6 +8,9 @@ class nexus(
   $tar_name     = 'nexus-latest.tar.gz',
   $install_java = false,
   $work_backup  = false,
+  $app_port     = '8081',
+  $app_addr     = '0.0.0.0',
+  $app_ctx_path = '/',
 ) {
 
   if $install_java == true {
@@ -59,6 +62,14 @@ class nexus(
     owner   => $run_as_user,
     group   => $run_as_user,
     mode    => '0775',
+  } ->
+
+  file { "${nexus_home}/conf/nexus.properties":
+    ensure  => file,
+    owner   => $run_as_user,
+    group   => $run_as_user,
+    mode    => '0775',
+    content => template('nexus/nexus.properties.erb'),
   } ->
 
   file { "${base_dir}/sonatype-work":
