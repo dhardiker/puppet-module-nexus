@@ -34,9 +34,9 @@ class nexus(
 
   if $work_backup != false {
     exec { "extract ${work_backup}":
-      command   => "/bin/tar -zxf ${work_backup} && touch .backup",
+      command   => "/bin/tar -zxf ${work_backup} && touch .sonatype-work.backup-extracted",
       cwd       => $base_dir,
-      creates   => "${base_dir}/sonatype-work/.backup",
+      creates   => "${base_dir}/.sonatype-work.backup-extracted",
       logoutput => on_failure,
     }
   }
