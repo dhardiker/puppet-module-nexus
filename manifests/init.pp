@@ -7,6 +7,7 @@ class nexus(
   $remote_url   = 'http://www.sonatype.org/downloads/nexus-latest-bundle.tar.gz',
   $tar_name     = 'nexus-latest.tar.gz',
   $install_java = false,
+  $work_backup  = false,
 ) {
 
   if $install_java == true {
@@ -30,6 +31,15 @@ class nexus(
     }
 
     User[$run_as_user] -> File[$nexus_home, "${base_dir}/sonatype-work"] -> Service['nexus']
+  }
+
+  if $work_backup != false {
+    exec { "extract ${work_backup}":
+      command   => "/bin/tar -zxf ${work_backup} && touch .backup",
+      cwd       => $base_dir,
+      creates   => "${base_dir}/sonatype-work/.backup",
+      logoutput => on_failure,
+    }
   }
 
   staging::file { $tar_name:
