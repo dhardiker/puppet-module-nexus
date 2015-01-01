@@ -54,6 +54,7 @@ class nexus(
 
   file { $nexus_home:
     ensure  => directory,
+    recurse => true,
     owner   => $run_as_user,
     group   => $run_as_user,
     mode    => '0775',
